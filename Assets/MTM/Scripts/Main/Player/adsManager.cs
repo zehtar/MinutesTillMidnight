@@ -1,3 +1,4 @@
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,7 +10,9 @@ public class AdsManager : MonoBehaviour
     private bool waitingForSceneLoad;
     private bool adOpened;
 
-    [SerializeField] private float adOpenTimeout = 1f;
+    [SerializeField] private float adOpenTimeout = 2f;
+
+    private Coroutine adOpenCoroutine;
 
     private void OnEnable()
     {
@@ -32,17 +35,23 @@ public class AdsManager : MonoBehaviour
 
     public void ShowAdAndLoadSceneByIndex(int sceneIndex)
     {
+        if (waitingForSceneLoad)
+            return;
+
         sceneIndexToLoad = sceneIndex;
         waitingForSceneLoad = true;
         adOpened = false;
 
+        adOpenCoroutine = StartCoroutine(CheckAdOpened());
+
         YG2.InterstitialAdvShow();
-        StartCoroutine(CheckAdOpened());
     }
 
     private IEnumerator CheckAdOpened()
     {
         yield return new WaitForSecondsRealtime(adOpenTimeout);
+
+        adOpenCoroutine = null;
 
         if (waitingForSceneLoad && !adOpened)
         {
@@ -52,7 +61,16 @@ public class AdsManager : MonoBehaviour
 
     private void OnOpenAd()
     {
+        if (!waitingForSceneLoad)
+            return;
+
         adOpened = true;
+
+        if (adOpenCoroutine != null)
+        {
+            StopCoroutine(adOpenCoroutine);
+            adOpenCoroutine = null;
+        }
     }
 
     private void OnCloseAd()
@@ -67,9 +85,17 @@ public class AdsManager : MonoBehaviour
 
     private void LoadScene()
     {
-        if (!waitingForSceneLoad) return;
+        if (!waitingForSceneLoad)
+            return;
 
         waitingForSceneLoad = false;
+
+        if (adOpenCoroutine != null)
+        {
+            StopCoroutine(adOpenCoroutine);
+            adOpenCoroutine = null;
+        }
+
         SceneManager.LoadScene(sceneIndexToLoad);
     }
 }

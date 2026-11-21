@@ -152,8 +152,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 95
-      width: 26
-      height: 26
+      width: 28
+      height: 28
     spriteID: c77863001a079f80e9e6d4a14378699d
     spriteBone: []
     spriteOutline: []
@@ -172,8 +172,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 36
       y: 94
-      width: 26
-      height: 26
+      width: 28
+      height: 28
     spriteID: d16ff2d616ff09ea3bb4edfdb98dc12b
     spriteBone: []
     spriteOutline: []
@@ -192,8 +192,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 69
       y: 94
-      width: 26
-      height: 26
+      width: 28
+      height: 28
     spriteID: bdf4190af57c3d985808b74a1dc47f0f
     spriteBone: []
     spriteOutline: []
@@ -210,10 +210,10 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 100
-      y: 93
-      width: 26
-      height: 26
+      x: 101
+      y: 94
+      width: 28
+      height: 28
     spriteID: 38a223ad5a7eccdc1bb29c5bdd8621ff
     spriteBone: []
     spriteOutline: []
@@ -232,8 +232,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 65
-      width: 26
-      height: 26
+      width: 28
+      height: 28
     spriteID: e832f34b36b046e1db93a02e161f23e8
     spriteBone: []
     spriteOutline: []
@@ -252,8 +252,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 34
-      width: 26
-      height: 26
+      width: 28
+      height: 28
     spriteID: a709c53c164ad5df6abaf2e4b32ef875
     spriteBone: []
     spriteOutline: []
@@ -272,8 +272,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 26
-      height: 26
+      width: 28
+      height: 28
     spriteID: 0f77770733ba9106d884e5357a6e8eb7
     spriteBone: []
     spriteOutline: []
@@ -292,8 +292,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 36
       y: 65
-      width: 26
-      height: 26
+      width: 28
+      height: 28
     spriteID: 95ea156c59db861048074ee081eee44d
     spriteBone: []
     spriteOutline: []
@@ -312,8 +312,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 68
       y: 65
-      width: 26
-      height: 26
+      width: 28
+      height: 28
     spriteID: ea1b62f9ac336ebd2ac1fa6f10212355
     spriteBone: []
     spriteOutline: []
@@ -332,8 +332,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 101
       y: 65
-      width: 26
-      height: 26
+      width: 28
+      height: 28
     spriteID: 8c2733ff78671a51d90376b9aab900e5
     spriteBone: []
     spriteOutline: []
@@ -352,8 +352,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 36
       y: 36
-      width: 26
-      height: 26
+      width: 28
+      height: 28
     spriteID: 09701ca310b5ac42d9669868d206e0cd
     spriteBone: []
     spriteOutline: []
@@ -372,8 +372,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 68
       y: 36
-      width: 26
-      height: 26
+      width: 28
+      height: 28
     spriteID: bb101cee13d55a896bd75d559a0757af
     spriteBone: []
     spriteOutline: []
@@ -392,8 +392,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 101
       y: 36
-      width: 27
-      height: 26
+      width: 28
+      height: 28
     spriteID: 58a7f5c1ae0e1aea58403605856c2c10
     spriteBone: []
     spriteOutline: []
@@ -412,8 +412,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 36
       y: 5
-      width: 26
-      height: 26
+      width: 28
+      height: 28
     spriteID: 7bf1ea6e83519a744a474af0e8383481
     spriteBone: []
     spriteOutline: []
@@ -432,8 +432,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 68
       y: 5
-      width: 26
-      height: 26
+      width: 28
+      height: 28
     spriteID: 694768e8ba0b9818aa1f0ada3284bf9a
     spriteBone: []
     spriteOutline: []
@@ -452,8 +452,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 101
       y: 5
-      width: 26
-      height: 26
+      width: 28
+      height: 28
     spriteID: e4bb464118d54a8de98c12279ec28e10
     spriteBone: []
     spriteOutline: []
@@ -480,10 +480,10 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 23
-        y: 358
-        width: 123
-        height: 147
+        x: 22
+        y: 357
+        width: 125
+        height: 149
       spriteId: e5c81a8d3de0ff39484a3d38d0647b5e
     linkedCells: []
     parentIndex: -1

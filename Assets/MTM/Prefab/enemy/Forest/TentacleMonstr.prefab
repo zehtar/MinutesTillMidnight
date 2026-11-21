@@ -148,16 +148,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHealt: 10
   isBoss: 0
+  isDie: 0
   maxHP: 0
   health: 1
   baseSpeed: 2
   speed: 1
+  maxSpeed: 0
   canMove: 1
   damage: 1
   startTimeBtwAttack: 1
   attackRadius: 1
   expGain: 1
-  deathEffect: {fileID: 6864034971685006509, guid: f0cc60dec96c632ddae62b8ce45be920,
+  deathEffect: {fileID: 5996391868990074824, guid: 00ce829f7c5cb9b49854426533b3e95d,
     type: 3}
   deathCoinDrop: {fileID: 1228376428243623348, guid: 04cbeb9c614186742980d2f2cb8dc201,
     type: 3}

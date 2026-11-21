@@ -228,20 +228,19 @@ public class Enemy : MonoBehaviour
         // текст урона (позже тоже можно запулить)
         if (damageCanvas != null && floatingDamage != null)
         {
-            // Здесь лучше использовать Instantiate как есть, либо пул
-            // Для упрощения оставляю Instantiate, но привожу к мировым координатам аккуратно
             GameObject obj = Instantiate(floatingDamage, damageCanvas);
             obj.transform.position = hitPoint + new Vector2(0, 0.5f); 
-            // Или если у тебя UI DamageCanvas в ScreenSpace, то логика другая, но оставим как было у тебя
-            // obj.GetComponent<RectTransform>().localPosition = ... (твоя старая логика)
             
             obj.GetComponent<DamageTextAnimationScript>().Init(finalDamage, isCrit);
         }
-        
-        hitEffect.Flash();
 
         if (health <= 0f && !isDie)
+        {
             Die();
+            return;
+        }
+
+        hitEffect.Flash();
     }
 
     private void Die()
@@ -268,8 +267,10 @@ public class Enemy : MonoBehaviour
             if (coin != null) coin.expNum = expGain;
         }
 
-        if (deathEffect != null)
-            Instantiate(deathEffect, _tr.position, _tr.rotation);
+        if (EnemyDeathEffectPool.Instance != null)
+        {
+            EnemyDeathEffectPool.Instance.PlayEffect(_tr.position, _tr.rotation);
+        }
 
         if (burnDeathCircleSpawns && fireArea != null)
             Instantiate(fireArea, _tr.position, _tr.rotation);

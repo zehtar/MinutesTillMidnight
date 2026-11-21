@@ -112,23 +112,55 @@ public class AudioManager : MonoBehaviour
 
     public void PlayRandoomBattleMusic()
     {
-        do
+        if (bgmBattleClips == null || bgmBattleClips.Length == 0)
+            return;
+
+        int minIndex = bgmBattleClips.Length > 1 ? 1 : 0;
+        int newIndex;
+
+        if (bgmBattleClips.Length - minIndex == 1)
         {
-            index = Random.Range(1, bgmBattleClips.Length);
-        }while(index == lastIndex);
-        
+            newIndex = minIndex;
+        }
+        else
+        {
+            do
+            {
+                newIndex = Random.Range(minIndex, bgmBattleClips.Length);
+            }
+            while (newIndex == lastIndex);
+        }
+
+        index = newIndex;
         lastIndex = index;
+
         musicSource.clip = bgmBattleClips[index];
         musicSource.Play();
     }
+
     public void PlayRandoomMenuMusic()
     {
-        do
+        if (bgmMenuClips == null || bgmMenuClips.Length == 0)
+            return;
+
+        int newIndex;
+
+        if (bgmMenuClips.Length == 1)
         {
-            index = Random.Range(0, bgmMenuClips.Length);
-        }while(index == lastIndex);
-        
+            newIndex = 0;
+        }
+        else
+        {
+            do
+            {
+                newIndex = Random.Range(0, bgmMenuClips.Length);
+            }
+            while (newIndex == lastIndex);
+        }
+
+        index = newIndex;
         lastIndex = index;
+
         musicSource.clip = bgmMenuClips[index];
         musicSource.Play();
     }

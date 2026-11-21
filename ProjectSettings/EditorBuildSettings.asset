@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MTM/Scenes/ForestInf.unity
     guid: 88ca2ac8dfdb5624cae76848a31fd5b8
+  - enabled: 1
+    path: Assets/MTM/Scenes/TestForest.unity
+    guid: 0e28ff922d4268a40a8b088a12122c83
   m_configObjects: {}
