@@ -144,7 +144,10 @@ public class FireScript : MonoBehaviour
 		if(wp.bigAmmo && shotCounter > 3)
 		{
 			ringAnimator.SetTrigger("Pulse");
-        	GameObject flash = Instantiate(muzzleFlashPrefab, gunPoint.position, gunPoint.rotation);
+			MuzzleFlashPool.Instance.PlayEffect(
+				gunPoint.position,
+				gunPoint.rotation
+			);
 			ShotCountCheck();
 			BigBulletTrue();
 			shotCounter = 0;
@@ -189,7 +192,10 @@ public class FireScript : MonoBehaviour
 		{
 			AudioManager.Instance.PlayShoot();
 			FindObjectOfType<CameraMovement>().Shake(0.3f, 2f); 
-        	GameObject flash = Instantiate(muzzleFlashPrefab, gunPoint.position, gunPoint.rotation);
+        	MuzzleFlashPool.Instance.PlayEffect(
+                gunPoint.position,
+                gunPoint.rotation
+            );
 			ShotCountCheck();
 			BulletTrue();
 			fireRate = curTimeout;		

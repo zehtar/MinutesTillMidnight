@@ -106,7 +106,10 @@ public class Bullet : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= lifetime)
         {
-            //Instantiate(deathBulletEffect, transform.position, transform.rotation);
+            BulletHitEffectPool.Instance.PlayEffect(
+                transform.position,
+                Quaternion.identity
+            );
             trail.enabled = false;
             gameObject.SetActive(false);
         }
@@ -129,7 +132,10 @@ public class Bullet : MonoBehaviour
                 enemy.TakeDamage(finalDamage, hitPoint, _isCrit);
                 _penetratedEnemies.Add(enemy);
 
-                //Instantiate(deathBulletEffect, transform.position, transform.rotation);
+                BulletHitEffectPool.Instance.PlayEffect(
+                    transform.position,
+                    Quaternion.identity
+                );
                 
                 penetrationNow--;
                 if (penetrationNow < 0)
@@ -141,7 +147,10 @@ public class Bullet : MonoBehaviour
         }
         else if (whatIsSolid == (whatIsSolid | (1 << other.gameObject.layer)))
         {
-            //Instantiate(deathBulletEffect, transform.position, transform.rotation);
+            BulletHitEffectPool.Instance.PlayEffect(
+                transform.position,
+                Quaternion.identity
+            );
             trail.enabled = false;
             gameObject.SetActive(false);
         }
