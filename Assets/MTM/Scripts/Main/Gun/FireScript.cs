@@ -33,6 +33,7 @@ public class FireScript : MonoBehaviour
 
 	public Animator ringAnimator; // Ссылка на Animator компонента с кольцами
 	public GameObject muzzleFlashPrefab;
+	public WeaponRecoil weaponRecoil;
 	
 	public BladeEffect bladeEffect;
 	public EffectsStatsController effectsStatsController;
@@ -45,6 +46,7 @@ public class FireScript : MonoBehaviour
 		wp = FindObjectOfType<WeaponPassivesActive>();
 		bladeEffect =  FindObjectOfType<BladeEffect>();
 		effectsStatsController =  FindObjectOfType<EffectsStatsController>();
+		weaponRecoil = GetComponentInChildren<WeaponRecoil>();
 		
 		spread = st.spread;
 		baseCurTimeOut = st.gunfireRate;
@@ -191,13 +193,23 @@ public class FireScript : MonoBehaviour
 		if(bulletHave > 0)
 		{
 			AudioManager.Instance.PlayShoot();
+			
+			weaponRecoil.ApplyRecoil(
+				shotPerShot,
+				spread,
+				curTimeout
+			);
+			
 			FindObjectOfType<CameraMovement>().Shake(0.3f, 2f); 
+			
         	MuzzleFlashPool.Instance.PlayEffect(
                 gunPoint.position,
                 gunPoint.rotation
             );
+	        
 			ShotCountCheck();
 			BulletTrue();
+			
 			fireRate = curTimeout;		
 			if(wp.fireSpeeder)
 			{				
