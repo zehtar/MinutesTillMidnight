@@ -16,7 +16,14 @@ public class Enemy : MonoBehaviour
     public float speed;
     public float maxSpeed;
     public bool canMove = true;
-
+    public bool isHitStunned;
+    
+    private Vector2 _knockbackVelocity;
+    [SerializeField] private float knockbackForce = 3f;
+    [SerializeField] private float knockbackDecay = 12f;
+    [SerializeField] private float knockbackPlayerInfluence = 0.8f;
+    [SerializeField] private float knockbackBulletInfluence = 0.2f;
+    
     [Header("Атака")]
     public int damage;
     public float startTimeBtwAttack = 1f;
@@ -148,6 +155,7 @@ public class Enemy : MonoBehaviour
 
         health = maxHP;
         _timebBtwAttack = 0f;
+        knockbackForce = st.selectedWeapon.knockBackForce;
         burnDeathCircleSpawns = false;
     }
 
@@ -181,7 +189,7 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_player == null || speed <= 0f || !canMove) return;
+        if (_player == null || !canMove) return;
 
         Vector2 pos = _tr.position;
         Vector2 toPlayer = (Vector2)_player.transform.position - pos;
@@ -192,7 +200,19 @@ public class Enemy : MonoBehaviour
 
         // Комбинируем движение к игроку и раздвигание
         Vector2 desiredDir = dirToPlayer + push;
+        
+        _knockbackVelocity = Vector2.MoveTowards(
+            _knockbackVelocity,
+            Vector2.zero,
+            knockbackDecay * Time.fixedDeltaTime
+        );
 
+        if (speed <= 0f || isHitStunned)
+        {
+            _tr.position = pos + _knockbackVelocity * Time.fixedDeltaTime;
+            return;
+        }
+        
         if (desiredDir.sqrMagnitude < 0.0001f)
             desiredDir = dirToPlayer;
         else
@@ -207,7 +227,15 @@ public class Enemy : MonoBehaviour
         if (_currentMoveDir.sqrMagnitude < 0.0001f)
             _currentMoveDir = desiredDir;
 
-        _tr.position = pos + _currentMoveDir * speed * Time.fixedDeltaTime;
+        _knockbackVelocity = Vector2.MoveTowards(
+            _knockbackVelocity,
+            Vector2.zero,
+            knockbackDecay * Time.fixedDeltaTime
+        );
+
+        Vector2 movement = _currentMoveDir * speed + _knockbackVelocity;
+
+        _tr.position = pos + movement * Time.fixedDeltaTime;
     }
 
     public void TakeDamage(float damage)
@@ -239,6 +267,18 @@ public class Enemy : MonoBehaviour
             Die();
             return;
         }
+        
+       
+        Vector2 directionFromPlayer =
+            ((Vector2)_tr.position - (Vector2)_player.transform.position).normalized;
+        Vector2 directionFromBullet =
+            ((Vector2)_tr.position - hitPoint).normalized;
+
+        Vector2 knockbackDirection =
+            (directionFromPlayer * knockbackPlayerInfluence +
+             directionFromBullet * knockbackBulletInfluence).normalized;
+
+        ApplyKnockback(knockbackDirection);
 
         hitEffect.Flash();
     }
@@ -294,6 +334,14 @@ public class Enemy : MonoBehaviour
     public void OnEnemyAttack()
     {
         _player?.TakeDamage(damage);
+    }
+    
+    public void ApplyKnockback(Vector2 direction)
+    {
+        if (isDie) return;
+
+        direction.Normalize();
+        _knockbackVelocity += direction * knockbackForce;
     }
 
     public IEnumerator ApplySlow(float amount, float duration)

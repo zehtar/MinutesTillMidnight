@@ -28,7 +28,7 @@ public class ShrapnellBullet : MonoBehaviour
         trailRenderer = GetComponentInChildren<TrailRenderer>();
         statsSaved = FindObjectOfType<StatsSaved>();
         effStController = FindObjectOfType<EffectsStatsController>();
-        baseDamage = statsSaved.bulletdamage/2;
+        baseDamage = statsSaved.selectedWeapon.bulletDamage/2;
         penetration = effStController.shrapnelPenetration + 1;
     }
 

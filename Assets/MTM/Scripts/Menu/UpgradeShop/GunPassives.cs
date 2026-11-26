@@ -15,13 +15,13 @@ public class GunPassives : MonoBehaviour
 
     void Update()
     {
-        if (st.gunSelected == lastgunSelected) return;
+        if (st.selectedWeapon.weaponName == lastgunSelected) return;
 
-        lastgunSelected = st.gunSelected;
+        lastgunSelected = st.selectedWeapon.weaponName;
 
         DeselectiveAll();
         
-        switch(st.gunSelected)
+        switch(st.selectedWeapon.weaponName)
         {
             case "Gun1": gunsList[0].SetActive(true); break;
             case "Gun2": gunsList[1].SetActive(true); break;

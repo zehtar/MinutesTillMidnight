@@ -4,44 +4,49 @@ using UnityEngine;
 public class HitFlash : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
+    public Material flashMaterial;
+
+    [SerializeField] private float stunDuration = 0.12f;
+
     private Enemy _enemy;
-    public Material flashMaterial; // Тот самый белый материал
-    
     private Material originalMaterial;
     private Coroutine flashCoroutine;
 
-    void Start()
+    private void Awake()
     {
-        if (spriteRenderer == null) 
+        if (spriteRenderer == null)
             spriteRenderer = GetComponent<SpriteRenderer>();
+
         _enemy = GetComponent<Enemy>();
-        // Запоминаем родной материал врага (с текстурой)
-        originalMaterial = spriteRenderer.material;
+
+        if (spriteRenderer != null)
+            originalMaterial = spriteRenderer.material;
     }
 
     public void Flash()
     {
-        if (flashCoroutine != null) StopCoroutine(flashCoroutine);
+        if (flashCoroutine != null)
+            StopCoroutine(flashCoroutine);
+
         flashCoroutine = StartCoroutine(FlashRoutine());
     }
 
     private IEnumerator FlashRoutine()
     {
-        // Вместо сохранения текущей скорости, лучше иметь в скрипте врага 
-        // переменную 'baseSpeed', которую мы не меняем.
-        float originalSpeed = _enemy.speed; 
-    
-        // Если враг уже стоит (например, от прошлого хита), не сохраняем 0
-        if (originalSpeed <= 0) originalSpeed = _enemy.maxSpeed; 
+        if (_enemy != null)
+            _enemy.isHitStunned = true;
 
-        spriteRenderer.material = flashMaterial;
-        _enemy.speed = 0;
+        if (spriteRenderer != null && flashMaterial != null)
+            spriteRenderer.material = flashMaterial;
 
-        yield return new WaitForSeconds(0.08f);
+        yield return new WaitForSeconds(stunDuration);
 
-        spriteRenderer.material = originalMaterial;
-        _enemy.speed = originalSpeed;
+        if (spriteRenderer != null && originalMaterial != null)
+            spriteRenderer.material = originalMaterial;
+
+        if (_enemy != null)
+            _enemy.isHitStunned = false;
+
         flashCoroutine = null;
     }
-
 }

@@ -42,21 +42,24 @@ public class GunPlayerSelection : MonoBehaviour
 
         selectionCircle.sprite = selectedSprite;
         selectedWeapon = this;
-
-        statsSaved.spread = weaponStats.spread;
-        statsSaved.bulletsInMagazine = weaponStats.bulletsInMagazine;
-        statsSaved.gunSelected = weaponStats.weaponName;
-        statsSaved.bulletdamage = weaponStats.bulletDamage;
-        statsSaved.gunfireRate = weaponStats.fireRate;
-        statsSaved.bulletspeed = weaponStats.bulletSpeed;
-        statsSaved.gunshotPerShot = weaponStats.shotsPerShot;
-        statsSaved.bulletsInMagazine = weaponStats.bulletsInMagazine;
-        statsSaved.passivesLevel = weaponStats.passivesLevel;
-        statsSaved.penetration = weaponStats.penetration;
-        statsSaved.reloadTime = weaponStats.reloadTime;
-        statsSaved.critChance = weaponStats.critChance;
-        statsSaved.critDamage = weaponStats.critDamage;
-        statsSaved.isSuperWeapon = weaponStats.isSuperWeapon;
+        
+        statsSaved.selectedWeapon = new WeaponStats
+        {
+            isSuperWeapon = weaponStats.isSuperWeapon,
+            weaponName = weaponStats.weaponName,
+            fireRate = weaponStats.fireRate,
+            shotsPerShot = weaponStats.shotsPerShot,
+            bulletSpeed = weaponStats.bulletSpeed,
+            bulletDamage = weaponStats.bulletDamage,
+            passivesLevel = weaponStats.passivesLevel,
+            penetration = weaponStats.penetration,
+            bulletsInMagazine = weaponStats.bulletsInMagazine,
+            spread = weaponStats.spread,
+            reloadTime = weaponStats.reloadTime,
+            critChance = weaponStats.critChance,
+            critDamage = weaponStats.critDamage,
+            knockBackForce = weaponStats.knockBackForce
+        };
 
         UpdateWeaponStatsUI();
         infomationGunUpgrades.SelectInfoPanel();
@@ -69,45 +72,45 @@ public class GunPlayerSelection : MonoBehaviour
 
     void UpdateWeaponStatsUI()
     {
-        if (damageText.text != statsSaved.bulletdamage.ToString())
+        if (damageText.text != statsSaved.selectedWeapon.bulletDamage.ToString())
         {
-            damageText.text = "" + statsSaved.bulletdamage;
+            damageText.text = "" + statsSaved.selectedWeapon.bulletDamage;
             damageText.GetComponent<Animator>().SetTrigger("updateText");
         }
         
-        if (fireRateText.text != statsSaved.gunfireRate.ToString())
+        if (fireRateText.text != statsSaved.selectedWeapon.fireRate.ToString())
         {
-            fireRateText.text = "" + statsSaved.gunfireRate;
+            fireRateText.text = "" + statsSaved.selectedWeapon.fireRate;
             fireRateText.GetComponent<Animator>().SetTrigger("updateText");
         }
         
-        if (bulletSpeedText.text != statsSaved.bulletspeed.ToString())
+        if (bulletSpeedText.text != statsSaved.selectedWeapon.bulletSpeed.ToString())
         {
-            bulletSpeedText.text = "" + statsSaved.bulletspeed;
+            bulletSpeedText.text = "" + statsSaved.selectedWeapon.bulletSpeed;
             bulletSpeedText.GetComponent<Animator>().SetTrigger("updateText");
         }
         
-        if (shotsPerShotText.text != statsSaved.gunshotPerShot.ToString())
+        if (shotsPerShotText.text != statsSaved.selectedWeapon.shotsPerShot.ToString())
         {
-            shotsPerShotText.text = "" + statsSaved.gunshotPerShot;
+            shotsPerShotText.text = "" + statsSaved.selectedWeapon.shotsPerShot;
             shotsPerShotText.GetComponent<Animator>().SetTrigger("updateText");
         }
         
-        if (bulletInMAgazineText.text != statsSaved.bulletsInMagazine.ToString())
+        if (bulletInMAgazineText.text != statsSaved.selectedWeapon.bulletsInMagazine.ToString())
         {
-            bulletInMAgazineText.text = "" + statsSaved.bulletsInMagazine;
+            bulletInMAgazineText.text = "" + statsSaved.selectedWeapon.bulletsInMagazine;
             bulletInMAgazineText.GetComponent<Animator>().SetTrigger("updateText");
         }
         
-        if (penetrationText.text != statsSaved.penetration.ToString())
+        if (penetrationText.text != statsSaved.selectedWeapon.penetration.ToString())
         {
-            penetrationText.text = "" + statsSaved.penetration;
+            penetrationText.text = "" + statsSaved.selectedWeapon.penetration;
             penetrationText.GetComponent<Animator>().SetTrigger("updateText");
         }
         
-        if (spreadText.text != statsSaved.spread.ToString())
+        if (spreadText.text != statsSaved.selectedWeapon.spread.ToString())
         {
-            spreadText.text = "" + statsSaved.spread;
+            spreadText.text = "" + statsSaved.selectedWeapon.spread;
             spreadText.GetComponent<Animator>().SetTrigger("updateText");
         }
     }

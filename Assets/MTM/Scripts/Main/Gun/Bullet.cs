@@ -41,9 +41,9 @@ public class Bullet : MonoBehaviour
         statsSaved = FindObjectOfType<StatsSaved>();
         fireScript = FindObjectOfType<FireScript>();
         
-        baseDamage = statsSaved.bulletdamage;
-        baseSpeed = statsSaved.bulletspeed;
-        penetration = statsSaved.penetration;
+        baseDamage = statsSaved.selectedWeapon.bulletDamage;
+        baseSpeed = statsSaved.selectedWeapon.bulletSpeed;
+        penetration = statsSaved.selectedWeapon.penetration;
         baseSize = 0.3f;
     }
 
@@ -55,9 +55,9 @@ public class Bullet : MonoBehaviour
         statsSaved = FindObjectOfType<StatsSaved>();
         fireScript = FindObjectOfType<FireScript>();
         
-        baseDamage = statsSaved.bulletdamage;
-        baseSpeed = statsSaved.bulletspeed;
-        penetration = statsSaved.penetration;
+        baseDamage = statsSaved.selectedWeapon.bulletDamage;
+        baseSpeed = statsSaved.selectedWeapon.bulletSpeed;
+        penetration = statsSaved.selectedWeapon.penetration;
         baseSize = 0.3f;
     }
 
@@ -89,7 +89,7 @@ public class Bullet : MonoBehaviour
         manager = BulletPoulManager.SharedInstance;
         damage = baseDamage * manager.globalDamageBuff + bigbaff * 2;
         speed = baseSpeed * manager.globalSpeedBuff + bigbaff * 3;
-        penetration = statsSaved.penetration + manager.globalPenetrationBuff;
+        penetration = statsSaved.selectedWeapon.penetration + manager.globalPenetrationBuff;
 
         float newScale = baseSize + manager.globalScaleBuff + bigbaff / 2;
         if (newScale <= 0f)
@@ -127,7 +127,7 @@ public class Bullet : MonoBehaviour
                 effectController.ApplyEffects(enemy, hitPoint , this);
                 
                 float finalDamage = passives.critChanceActive ? CritDamagion((int)damage) : (int)damage;
-                finalDamage = CalculateDamage(finalDamage,statsSaved.critChance,statsSaved.critDamage);
+                finalDamage = CalculateDamage(finalDamage,statsSaved.selectedWeapon.critChance,statsSaved.selectedWeapon.critDamage);
                 
                 enemy.TakeDamage(finalDamage, hitPoint, _isCrit);
                 _penetratedEnemies.Add(enemy);

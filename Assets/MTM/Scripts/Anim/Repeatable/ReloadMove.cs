@@ -24,7 +24,7 @@ public class ReloadMove : MonoBehaviour
         effectsStatsController = FindAnyObjectByType<EffectsStatsController>();
         player = FindObjectOfType<player>();
         statsSaved = FindObjectOfType<StatsSaved>();
-        endOfTimer = statsSaved.reloadTime;
+        endOfTimer = statsSaved.selectedWeapon.reloadTime;
         
         playerCanvas = player.GetComponentInChildren<Canvas>().gameObject;
         transform.SetParent(playerCanvas.transform);

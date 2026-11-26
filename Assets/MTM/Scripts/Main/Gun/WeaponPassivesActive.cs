@@ -20,10 +20,10 @@ public class WeaponPassivesActive : MonoBehaviour
         //thisGun = FindObjectOfType<FireScript>();  
         //pu = FindObjectOfType<PowerUpsScript>();
 
-        passivesLevel = st.passivesLevel;
-        gunName = st.gunSelected;
+        passivesLevel = st.selectedWeapon.passivesLevel;
+        gunName = st.selectedWeapon.weaponName;
         
-        if (st.isSuperWeapon)
+        if (st.selectedWeapon.isSuperWeapon)
         {
             switch (gunName)
             {

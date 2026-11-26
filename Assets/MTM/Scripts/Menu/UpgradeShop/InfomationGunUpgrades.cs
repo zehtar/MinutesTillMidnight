@@ -23,7 +23,7 @@ public class InfomationGunUpgrades : MonoBehaviour
     public void SelectInfoPanel()
     {
         DeSelectAll();
-        switch(st.gunSelected)
+        switch(st.selectedWeapon.weaponName)
         {
             case "Gun1": infoPanels[0].SetActive(true); break;
             case "Gun2": infoPanels[1].SetActive(true); break;

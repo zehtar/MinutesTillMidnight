@@ -39,7 +39,7 @@ public class UImanager : MonoBehaviour
 
     public void OpenGame()
     {
-        if (st.characterName.Length > 2 && st.gunSelected.Length > 2)
+        if (st.characterName.Length > 2 && st.selectedWeapon.weaponName.Length > 2)
         {
             forestDiff.ApplyDiffucult();
             indexScene = 1;
@@ -52,7 +52,7 @@ public class UImanager : MonoBehaviour
 
     public void OpenInfGame()
     {
-        if (st.characterName.Length > 2 && st.gunSelected.Length > 2)
+        if (st.characterName.Length > 2 && st.selectedWeapon.weaponName.Length > 2)
         {
             forestDiff.ApplyDiffucult();
             indexScene = 4;
@@ -65,7 +65,7 @@ public class UImanager : MonoBehaviour
 
     public void OpenGameGave()
     {
-        if (st.characterName.Length > 2 && st.gunSelected.Length > 2)
+        if (st.characterName.Length > 2 && st.selectedWeapon.weaponName.Length > 2)
         {
             caveDiff.ApplyDiffucult();
             indexScene = 2;
@@ -78,7 +78,7 @@ public class UImanager : MonoBehaviour
 
     public void OpenGameCastle()
     {
-        if (st.characterName.Length > 2 && st.gunSelected.Length > 2)
+        if (st.characterName.Length > 2 && st.selectedWeapon.weaponName.Length > 2)
         {
             dungeonDiff.ApplyDiffucult();
             indexScene = 3;

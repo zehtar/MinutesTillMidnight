@@ -20,7 +20,7 @@ public class GunVisualChanged : MonoBehaviour
 
     void Update()
     {
-        gunID = statsSaved.gunSelected;
+        gunID = statsSaved.selectedWeapon.weaponName;
         currentLang = YG2.lang;
 
         switch (gunID)
@@ -28,42 +28,42 @@ public class GunVisualChanged : MonoBehaviour
             case "Gun1":
                 GunsReset();
                 gunText.text = GetGunName("Gun1");
-                if (statsSaved.isSuperWeapon) { guns[4].SetActive(true); }
+                if (statsSaved.selectedWeapon.isSuperWeapon) { guns[4].SetActive(true); }
                 else { guns[0].SetActive(true); }
                 break;
 
             case "Gun2":
                 GunsReset();
                 gunText.text = GetGunName("Gun2");
-                if (statsSaved.isSuperWeapon) { guns[5].SetActive(true); }
+                if (statsSaved.selectedWeapon.isSuperWeapon) { guns[5].SetActive(true); }
                 else { guns[1].SetActive(true); }
                 break;
 
             case "Gun3":
                 GunsReset();
                 gunText.text = GetGunName("Gun3");
-                if (statsSaved.isSuperWeapon) { guns[6].SetActive(true); }
+                if (statsSaved.selectedWeapon.isSuperWeapon) { guns[6].SetActive(true); }
                 else { guns[2].SetActive(true); }
                 break;
 
             case "Gun4":
                 GunsReset();
                 gunText.text = GetGunName("Gun4");
-                if (statsSaved.isSuperWeapon) { guns[7].SetActive(true); }
+                if (statsSaved.selectedWeapon.isSuperWeapon) { guns[7].SetActive(true); }
                 else { guns[3].SetActive(true); }
                 break;
             
             case "Gun5":
                 GunsReset();
                 gunText.text = GetGunName("Gun5");
-                if (statsSaved.isSuperWeapon) { guns[9].SetActive(true); }
+                if (statsSaved.selectedWeapon.isSuperWeapon) { guns[9].SetActive(true); }
                 else { guns[8].SetActive(true); }
                 break;
             
             case "Gun6":
                 GunsReset();
                 gunText.text = GetGunName("Gun6");
-                if (statsSaved.isSuperWeapon) { guns[11].SetActive(true); }
+                if (statsSaved.selectedWeapon.isSuperWeapon) { guns[11].SetActive(true); }
                 else { guns[10].SetActive(true); }
                 break;
 

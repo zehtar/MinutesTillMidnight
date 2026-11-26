@@ -48,12 +48,12 @@ public class FireScript : MonoBehaviour
 		effectsStatsController =  FindObjectOfType<EffectsStatsController>();
 		weaponRecoil = GetComponentInChildren<WeaponRecoil>();
 		
-		spread = st.spread;
-		baseCurTimeOut = st.gunfireRate;
+		spread = st.selectedWeapon.spread;
+		baseCurTimeOut = st.selectedWeapon.fireRate;
 		curTimeout = baseCurTimeOut;
-		shotPerShot = st.gunshotPerShot;
+		shotPerShot = st.selectedWeapon.shotsPerShot;
 		ShotCountCheck();
-		bulletMax = st.bulletsInMagazine;
+		bulletMax = st.selectedWeapon.bulletsInMagazine;
 		bulletHave = bulletMax;
 	}
 

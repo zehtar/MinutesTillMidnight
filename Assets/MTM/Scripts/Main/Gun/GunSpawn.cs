@@ -15,7 +15,7 @@ public class GunSpawn : MonoBehaviour
     void Start()
     {
         statsSaved = FindObjectOfType<StatsSaved>();
-        ActivateWeapon(statsSaved.gunSelected);
+        ActivateWeapon(statsSaved.selectedWeapon.weaponName);
     }
 
     public void ActivateWeapon(string weaponName)
@@ -34,7 +34,7 @@ public class GunSpawn : MonoBehaviour
                 guns[i].SetActive(true);
 
                 // Меняем скин (ищем Image в оружии)
-                if (statsSaved.isSuperWeapon)
+                if (statsSaved.selectedWeapon.isSuperWeapon)
                 { 
                     if (i < superGunSkins.Count)
                     {
