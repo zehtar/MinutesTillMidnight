@@ -16,6 +16,8 @@ public class FireScript : MonoBehaviour
 
 	public StatsSaved st;//обьект с базовыми статами
 
+	public CameraMovement camera;
+
 	public float fireRate = 1;
 	public float curTimeout; // скорострельность
 	public float baseCurTimeOut;
@@ -200,7 +202,18 @@ public class FireScript : MonoBehaviour
 				curTimeout
 			);
 			
-			FindObjectOfType<CameraMovement>().Shake(0.3f, 2f); 
+			float shakeIntensity = 1f
+			                       + (st.selectedWeapon.bulletDamage - 1f) * 0.15f
+			                       + (st.selectedWeapon.shotsPerShot - 1) * 0.15f;
+
+			shakeIntensity = Mathf.Clamp(shakeIntensity, 0.5f, 2f);
+
+			if (GetComponent<Camera>() == null)
+			{
+				 camera = FindObjectOfType<CameraMovement>();
+			}
+
+			camera.Shake(0.3f, shakeIntensity);
 			
         	MuzzleFlashPool.Instance.PlayEffect(
                 gunPoint.position,
