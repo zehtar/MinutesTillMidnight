@@ -17,4 +17,5 @@ public class WeaponStats
     public float critChance = 0f;
     public float critDamage = 0.5f;
     public float knockBackForce = 2f;
+    public AudioClip shootClip;
 }

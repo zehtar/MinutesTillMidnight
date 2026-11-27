@@ -58,7 +58,8 @@ public class GunPlayerSelection : MonoBehaviour
             reloadTime = weaponStats.reloadTime,
             critChance = weaponStats.critChance,
             critDamage = weaponStats.critDamage,
-            knockBackForce = weaponStats.knockBackForce
+            knockBackForce = weaponStats.knockBackForce,
+            shootClip =  weaponStats.shootClip
         };
 
         UpdateWeaponStatsUI();

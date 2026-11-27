@@ -326,7 +326,7 @@ public class Enemy : MonoBehaviour
         }
 
         if (AudioManager.Instance != null)
-            AudioManager.Instance.PlayBoom();
+            AudioManager.Instance.PlayEnemyDeath();
 
         Destroy(gameObject);
     }

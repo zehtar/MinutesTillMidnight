@@ -192,7 +192,7 @@ public class FireScript : MonoBehaviour
 	{
 		if(bulletHave > 0)
 		{
-			AudioManager.Instance.PlayShoot();
+			AudioManager.Instance.PlayShoot(st.selectedWeapon.shootClip);
 			
 			weaponRecoil.ApplyRecoil(
 				shotPerShot,

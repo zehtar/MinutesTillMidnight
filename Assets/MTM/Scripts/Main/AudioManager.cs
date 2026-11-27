@@ -18,6 +18,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip powerUpClip;
     public AudioClip BoomClip;
     public AudioClip HearthClip;
+    public AudioClip[] enemyDeathClips;
     public AudioClip[] bgmBattleClips;
     public AudioClip[] bgmMenuClips;
 
@@ -77,11 +78,38 @@ public class AudioManager : MonoBehaviour
         if (clip != null)
             sfxSource.PlayOneShot(clip);
     }
+    public void PlayRandomSFX(AudioClip clip, float minPitch = 0.9f, float maxPitch = 1.2f)
+    {
+        if (clip == null)
+            return;
+
+        float pitch = Random.Range(minPitch, maxPitch);
+
+        sfxSource.pitch = pitch;
+        sfxSource.PlayOneShot(clip);
+        sfxSource.pitch = 1f;
+    }
+    public void PlayEnemyDeath()
+    {
+        if (enemyDeathClips == null || enemyDeathClips.Length == 0)
+            return;
+
+        AudioClip clip = enemyDeathClips[Random.Range(0, enemyDeathClips.Length)];
+
+        float pitch = Random.Range(0.95f, 1.05f);
+
+        sfxSource.pitch = pitch;
+        sfxSource.PlayOneShot(clip);
+        sfxSource.pitch = 1f;
+    }
 
     public void PlayClick() => PlaySFX(clickClip);
     public void PlayClick2() => PlaySFX(click2Clip);
     public void PlayPowerUp() => PlaySFX(powerUpClip);
-    public void PlayShoot() => PlaySFX(shootClip);
+    public void PlayShoot(AudioClip clip)
+    {
+        PlayRandomSFX(clip != null ? clip : shootClip);
+    }
     public void PlayHit() => PlaySFX(hitClip);
     public void PlayBoom() => PlaySFX(BoomClip);
     
